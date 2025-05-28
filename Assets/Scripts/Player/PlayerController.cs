@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerContoller : MonoBehaviour
 {
-
+    [SerializeField] PlayerModel model;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpSpeed;
 
