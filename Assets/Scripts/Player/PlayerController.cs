@@ -79,5 +79,12 @@ public class PlayerContoller : MonoBehaviour
         {
             isGrounded = true;
         }
+        if (collision.collider.CompareTag("Monster"))
+        {
+            if (model != null)
+            {
+                model.HP -= 1;
+            }
+        }
     }
 }
