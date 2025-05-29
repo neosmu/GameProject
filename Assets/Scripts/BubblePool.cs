@@ -4,43 +4,25 @@ using UnityEngine;
 
 public class BubblePool : MonoBehaviour
 {
-    [SerializeField] private GameObject bubblePrefab;
-    [SerializeField] private int PoolSize;
+    [SerializeField] private PooledBubble prefab; 
+    [SerializeField] private int poolSize;    
 
-    public static BubblePool Instance { get; private set; }
     private Queue<PooledBubble> pool = new Queue<PooledBubble>();
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            Pool();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    private void Pool()
-    {
-        for (int i = 0; i < PoolSize; i++)
+        for (int i = 0; i < poolSize; i++)
         {
             CreateBubble();
         }
     }
 
-    private PooledBubble CreateBubble()
+    private void CreateBubble()
     {
-        GameObject obj = Instantiate(bubblePrefab);
-        obj.SetActive(false);
-
-        PooledBubble bubble = obj.GetComponent<PooledBubble>();
+        PooledBubble bubble = Instantiate(prefab, transform);
         bubble.SetPool(this);
-
+        bubble.gameObject.SetActive(false);
         pool.Enqueue(bubble);
-        return bubble;
     }
 
     public PooledBubble GetBubble()

@@ -7,13 +7,20 @@ public class Shooter : MonoBehaviour
     [SerializeField] private BubblePool bubblePool;
     [SerializeField] private Transform muzzleTransform;
 
-    public void Fire(bool isFacingRight)
+    public void Fire(bool isFlipped)
     {
-        Vector2 fireDir = isFacingRight ? Vector2.right : Vector2.left;
-
+        Vector2 direction = isFlipped ? Vector2.right : Vector2.left;
         PooledBubble bubble = bubblePool.GetBubble();
+        if (bubble == null) return;
+
         bubble.transform.position = muzzleTransform.position;
         bubble.gameObject.SetActive(true);
-        bubble.shoot(fireDir);
+        bubble.shoot(direction);
+    }
+    public void SetMuzzleDirection(bool isFacingRight)
+    {
+        Vector3 localPos = muzzleTransform.localPosition;
+        localPos.x = Mathf.Abs(localPos.x) * (isFacingRight ? 1 : -1);
+        muzzleTransform.localPosition = localPos;
     }
 }

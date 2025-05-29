@@ -810,10 +810,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bef195c16cc07c45ab5b6c2bd303fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubblePrefab: {fileID: 2956280119041033642, guid: 7c1e77c7c857b994384483a3e3d9e71f, type: 3}
+  bubblePool: {fileID: 1451719323}
   muzzleTransform: {fileID: 709644199}
-  forwardForce: 5
-  delayToFloat: 2
 --- !u!1001 &824283513
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1117,8 +1115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c647eed0a38cf14ba83b60382085f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubblePrefab: {fileID: 2956280119041033642, guid: 7c1e77c7c857b994384483a3e3d9e71f, type: 3}
-  PoolSize: 10
+  prefab: {fileID: 1304931370027758682, guid: 7c1e77c7c857b994384483a3e3d9e71f, type: 3}
+  poolSize: 10
 --- !u!224 &1523494378 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3539910196005877230, guid: 87093cf5d6e56fc499f50db7ccc4457a, type: 3}

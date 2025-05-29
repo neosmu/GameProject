@@ -15,7 +15,6 @@ public class PooledBubble : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
     }
-
     public void SetPool(BubblePool bubblePool)
     {
         pool = bubblePool;
@@ -35,7 +34,6 @@ public class PooledBubble : MonoBehaviour
         rigid.velocity = Vector2.zero;
         rigid.AddForce(Vector2.up * upwardForce, ForceMode2D.Impulse);
     }
-
     public void Return()
     {
         gameObject.SetActive(false);

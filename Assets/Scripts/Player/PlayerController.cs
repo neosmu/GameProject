@@ -39,6 +39,7 @@ public class PlayerContoller : MonoBehaviour
         {
             shooter.Fire(spriteRenderer.flipX);
         }
+        shooter.SetMuzzleDirection(spriteRenderer.flipX);
     }
 
     private void FixedUpdate()
