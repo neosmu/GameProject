@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BubblePool : MonoBehaviour
 {
+    public static BubblePool Instance { get; private set; }
     [SerializeField] private PooledBubble prefab; 
     [SerializeField] private int poolSize;    
 
