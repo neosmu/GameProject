@@ -143,7 +143,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -164,3 +164,4 @@ MonoBehaviour:
   forwardForce: 10
   upwardForce: 2
   floatDelay: 0.2
+  capturedBubbleMonsterPrefab: {fileID: 7676330049892123009, guid: efdfd8065338a2446bec99aacc46e4c7, type: 3}

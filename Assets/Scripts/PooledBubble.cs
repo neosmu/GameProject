@@ -7,9 +7,10 @@ public class PooledBubble : MonoBehaviour
     private Rigidbody2D rigid;
     private BubblePool pool;
 
-    [SerializeField] private float forwardForce = 3f;
-    [SerializeField] private float upwardForce = 2f;
-    [SerializeField] private float floatDelay = 0.2f;
+    [SerializeField] private float forwardForce;
+    [SerializeField] private float upwardForce;
+    [SerializeField] private float floatDelay;
+    [SerializeField] private GameObject capturedBubbleMonsterPrefab;
 
     private void Awake()
     {
@@ -45,5 +46,20 @@ public class PooledBubble : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Monster"))
+        {
+            rigid.velocity = Vector2.zero;
+            rigid.bodyType = RigidbodyType2D.Kinematic;
+
+            Monster monster = collision.GetComponent<Monster>();
+            if (monster != null)
+            {
+                monster.ChangeState(new Monster_Captured(monster, this.gameObject, capturedBubbleMonsterPrefab));
+            }
+        }
+
     }
 }
