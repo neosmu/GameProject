@@ -60,6 +60,5 @@ public class PooledBubble : MonoBehaviour
                 monster.ChangeState(new Monster_Captured(monster, this.gameObject, capturedBubbleMonsterPrefab));
             }
         }
-
     }
 }

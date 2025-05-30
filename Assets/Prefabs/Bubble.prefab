@@ -165,3 +165,4 @@ MonoBehaviour:
   upwardForce: 2
   floatDelay: 0.2
   capturedBubbleMonsterPrefab: {fileID: 7676330049892123009, guid: efdfd8065338a2446bec99aacc46e4c7, type: 3}
+  bubblePopSFX: {fileID: 8300000, guid: 3b4549242ddf048a883fe74933fac820, type: 3}

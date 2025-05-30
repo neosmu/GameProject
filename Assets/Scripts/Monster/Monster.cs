@@ -15,12 +15,15 @@ public abstract class Monster : MonoBehaviour
     public readonly int IDLE_HASH = Animator.StringToHash("Idle");
     public readonly int WALK_HASH = Animator.StringToHash("Walk");
 
+    protected virtual void Awake()
+    {
+        StateMachineInit();
+    }
     protected virtual void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        StateMachineInit();
     }
     protected abstract void StateMachineInit();
 
