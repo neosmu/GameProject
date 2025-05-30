@@ -14,7 +14,6 @@ public abstract class Monster : MonoBehaviour
 
     public readonly int IDLE_HASH = Animator.StringToHash("Idle");
     public readonly int WALK_HASH = Animator.StringToHash("Walk");
-    public readonly int CATCH_HASH = Animator.StringToHash("Catch");
 
     protected virtual void Start()
     {
@@ -39,9 +38,9 @@ public abstract class Monster : MonoBehaviour
         stateMachine.ChangeState(newState);
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall"))
         {
             patrolVec *= -1f;
         }
