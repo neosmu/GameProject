@@ -17,10 +17,5 @@ public class Shooter : MonoBehaviour
         bubble.gameObject.SetActive(true);
         bubble.shoot(direction);
     }
-    public void SetMuzzleDirection(bool isFacingRight)
-    {
-        Vector3 localPos = muzzleTransform.localPosition;
-        localPos.x = Mathf.Abs(localPos.x) * (isFacingRight ? 1 : -1);
-        muzzleTransform.localPosition = localPos;
-    }
+    
 }
