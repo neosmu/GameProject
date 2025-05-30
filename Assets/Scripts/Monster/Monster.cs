@@ -14,6 +14,7 @@ public abstract class Monster : MonoBehaviour
 
     public readonly int IDLE_HASH = Animator.StringToHash("Idle");
     public readonly int WALK_HASH = Animator.StringToHash("Walk");
+    public readonly int CATCH_HASH = Animator.StringToHash("Catch");
 
     protected virtual void Start()
     {
