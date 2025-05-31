@@ -15,5 +15,5 @@ public abstract class BaseState
 
 public enum EState
 {
-    Idle, Move, Walk, Jump
+    Idle, Move, Walk, Jump, Hit, Death
 }

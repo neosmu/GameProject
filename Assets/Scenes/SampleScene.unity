@@ -1087,6 +1087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubblePool: {fileID: 1451719323}
   muzzleTransform: {fileID: 709644199}
+  bubbleShootSFX: {fileID: 8300000, guid: f16bd50fd16944350b3a9792f8840eb1, type: 3}
 --- !u!1001 &824283513
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1157,11 +1158,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3539910196005877230, guid: 87093cf5d6e56fc499f50db7ccc4457a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 58.1
+      value: 58.099976
       objectReference: {fileID: 0}
     - target: {fileID: 3539910196005877230, guid: 87093cf5d6e56fc499f50db7ccc4457a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 18.1
+      value: 18.099976
       objectReference: {fileID: 0}
     - target: {fileID: 3539910196005877230, guid: 87093cf5d6e56fc499f50db7ccc4457a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

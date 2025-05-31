@@ -12,6 +12,7 @@ public class PlayerContoller : MonoBehaviour
     private Rigidbody2D rigid;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private bool isDeath = false;
 
     private float inputX;
     private bool isJumped;
@@ -20,6 +21,8 @@ public class PlayerContoller : MonoBehaviour
     private readonly int IDLE_HASH = Animator.StringToHash("Idle");
     private readonly int MOVE_HASH = Animator.StringToHash("Move");
     private readonly int JUMP_HASH = Animator.StringToHash("Jump");
+    private readonly int HIT_HASH = Animator.StringToHash("Hit");
+    private readonly int DEATH_HASH = Animator.StringToHash("Death");
 
     void Start()
     {
@@ -30,6 +33,7 @@ public class PlayerContoller : MonoBehaviour
 
     void Update()
     {
+        if (isDeath) return;
         PlayerInput();
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -43,6 +47,7 @@ public class PlayerContoller : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDeath) return;
         PlayerMove();
         if (isJumped && isGrounded)
             PlayerJump();
@@ -78,11 +83,21 @@ public class PlayerContoller : MonoBehaviour
         {
             isGrounded = true;
         }
-        if (collision.collider.CompareTag("Monster"))
+        if (collision.collider.CompareTag("Monster") && !isDeath)
         {
             if (model != null)
             {
                 model.HP -= 1;
+                if (model.HP <= 0)
+                {
+                    animator.Play(DEATH_HASH);
+                    rigid.velocity = Vector2.zero;
+                    isDeath = true;
+                }
+                else
+                {
+                    animator.Play(HIT_HASH);
+                }
             }
         }
     }
