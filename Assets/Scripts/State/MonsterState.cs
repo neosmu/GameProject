@@ -38,9 +38,6 @@ public class Monster_Walk : MonsterState
 
 public class Monster_Captured : MonsterState
 {
-    private float timer = 0f;
-    private float duration = 3f;
-
     private GameObject bubbleObj; 
     private GameObject prefab;       
 
@@ -55,15 +52,5 @@ public class Monster_Captured : MonsterState
         monster.gameObject.SetActive(false);
         bubbleObj.SetActive(false);
         Object.Instantiate(prefab, monster.transform.position, Quaternion.identity);
-    }
-
-    public override void Update()
-    {
-        timer += Time.deltaTime;
-        if (timer >= duration)
-        {
-            Object.Destroy(bubbleObj);
-            Object.Destroy(monster.gameObject);
-        }
     }
 }
