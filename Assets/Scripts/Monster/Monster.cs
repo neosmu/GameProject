@@ -47,5 +47,9 @@ public abstract class Monster : MonoBehaviour
         {
             patrolVec *= -1f;
         }
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Monster"))
+        {
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.collider);
+        }
     }
 }

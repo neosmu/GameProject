@@ -83,7 +83,7 @@ public class PlayerContoller : MonoBehaviour
         {
             isGrounded = true;
         }
-        if (collision.collider.CompareTag("Monster") && !isDeath)
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Monster") && !isDeath)
         {
             if (model != null)
             {
