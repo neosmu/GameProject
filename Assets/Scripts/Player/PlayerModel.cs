@@ -12,4 +12,8 @@ public class PlayerModel : MonoBehaviour
     [SerializeField] int maxHP;
     public int MaxHP { set { maxHP = value; OnMaxHPChanged?.Invoke(maxHP); } get { return maxHP; } }
     public event Action<int> OnMaxHPChanged;
+
+    [SerializeField] int score;
+    public int Score { set { score = value; OnScoreChanged?.Invoke(score); } get { return score; } }
+    public event Action<int> OnScoreChanged;
 }

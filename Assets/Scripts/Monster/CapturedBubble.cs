@@ -15,6 +15,11 @@ public class CapturedBubble : MonoBehaviour
             {
                 audio.PlaySFX(bubblePopSFX);
             }
+            PlayerModel model = collision.GetComponent<PlayerModel>();
+            if (model != null)
+            {
+                model.Score += 500;
+            }
             Destroy(gameObject);
         }
     }
