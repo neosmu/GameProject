@@ -76,7 +76,7 @@ public class PooledBubble : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Monster"))
+        if (collision.gameObject.CompareTag("Monster"))
         {
             rigid.velocity = Vector2.zero;
             rigid.bodyType = RigidbodyType2D.Kinematic;

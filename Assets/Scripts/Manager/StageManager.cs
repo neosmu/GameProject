@@ -6,27 +6,45 @@ public class StageManager : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private Transform virtualCamera;
+    [SerializeField] private Transform[] playerSpawnPoints;
+    [SerializeField] private GameObject[] stageObjects;
     [SerializeField] private float moveDistance = 20f;
     [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float delayBeforeMove = 7f;
 
     private bool moving = false;
     private int currentStage = 0;
+    private Coroutine stageClearCoroutine;
 
-    void Update()
+    void Start()
     {
-        if (!moving && AllEnemiesDefeated() && AllFruitsCollected())
+        for (int i = 0; i < stageObjects.Length; i++)
         {
-            StartCoroutine(MoveToNextStage());
+            stageObjects[i].SetActive(i == currentStage);
         }
     }
-    private bool AllEnemiesDefeated()
+    void Update()
     {
-        return GameObject.FindGameObjectsWithTag("Monster").Length == 0;
+        if (!moving && NoCatchObjectsExist() && stageClearCoroutine == null)
+        {
+            stageClearCoroutine = StartCoroutine(DelayedStageMove());
+        }
     }
-
-    private bool AllFruitsCollected()
+    private bool NoCatchObjectsExist()
     {
-        return GameObject.FindGameObjectsWithTag("Fruit").Length == 0;
+        return GameObject.FindGameObjectsWithTag("Catch").Length == 0 &&
+            GameObject.FindGameObjectsWithTag("Monster").Length == 0;
+    }
+    private IEnumerator DelayedStageMove()
+    {
+        yield return new WaitForSeconds(delayBeforeMove);
+
+        if (!moving && NoCatchObjectsExist())
+        {
+            yield return MoveToNextStage();
+        }
+
+        stageClearCoroutine = null;
     }
     private IEnumerator MoveToNextStage()
     {
@@ -36,16 +54,20 @@ public class StageManager : MonoBehaviour
         if (controller != null)
             controller.enabled = false;
 
-        currentStage++;
-
-        Vector3 targetPlayerPos = player.position + Vector3.down * moveDistance;
         Vector3 targetCamPos = virtualCamera.position + Vector3.down * moveDistance;
 
-        while (Vector3.Distance(player.position, targetPlayerPos) > 0.1f)
+        while (Vector3.Distance(virtualCamera.position, targetCamPos) > 0.1f)
         {
-            player.position = Vector3.MoveTowards(player.position, targetPlayerPos, moveSpeed * Time.deltaTime);
             virtualCamera.position = Vector3.MoveTowards(virtualCamera.position, targetCamPos, moveSpeed * Time.deltaTime);
             yield return null;
+        }
+        stageObjects[currentStage].SetActive(false);
+        currentStage++;
+        stageObjects[currentStage].SetActive(true);
+
+        if (currentStage < playerSpawnPoints.Length)
+        {
+            player.position = playerSpawnPoints[currentStage].position;
         }
 
         if (controller != null)
