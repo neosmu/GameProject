@@ -2,18 +2,31 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerModel : MonoBehaviour
 {
-    [SerializeField] int hp;
-    public int HP { set { hp = value; OnHpChanged?.Invoke(hp); } get { return hp; } }
-    public event Action<int> OnHpChanged;
+    [SerializeField] ObservableProperty<int> hp = new();
+    public int HP { get => hp.Value; set => hp.Value = value; }
+    public event UnityAction<int> OnHpChanged
+    {
+        add => hp.Subscribe(value);
+        remove => hp.Unsubscribe(value);
+    }
 
-    [SerializeField] int maxHP;
-    public int MaxHP { set { maxHP = value; OnMaxHPChanged?.Invoke(maxHP); } get { return maxHP; } }
-    public event Action<int> OnMaxHPChanged;
+    [SerializeField] private ObservableProperty<int> maxHP = new();
+    public int MaxHP { get => maxHP.Value; set => maxHP.Value = value; }
+    public event UnityAction<int> OnMaxHPChanged
+    {
+        add => maxHP.Subscribe(value);
+        remove => maxHP.Unsubscribe(value);
+    }
 
-    [SerializeField] int score;
-    public int Score { set { score = value; OnScoreChanged?.Invoke(score); } get { return score; } }
-    public event Action<int> OnScoreChanged;
+    [SerializeField] private ObservableProperty<int> score = new();
+    public int Score { get => score.Value; set => score.Value = value; }
+    public event UnityAction<int> OnScoreChanged
+    {
+        add => score.Subscribe(value);
+        remove => score.Unsubscribe(value);
+    }
 }
