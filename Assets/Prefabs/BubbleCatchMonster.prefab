@@ -273,4 +273,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubblePopSFX: {fileID: 8300000, guid: 6707dc9a298054c319311125667ea300, type: 3}
-  bananaPrefab: {fileID: 3693443023500852149, guid: c51936906e1e8644a954e43211238b30, type: 3}
+  fruitPrefabs:
+  - {fileID: 3693443023500852149, guid: c51936906e1e8644a954e43211238b30, type: 3}
+  - {fileID: 4170599153609389314, guid: ebac079829022af4f8b798653261ce74, type: 3}
+  - {fileID: 2380193921190283183, guid: 1c0b1cedf68999940aedc99818740545, type: 3}
+  - {fileID: 2912341386357555621, guid: 52ff517a557084d419dbc44fa4bfd26b, type: 3}

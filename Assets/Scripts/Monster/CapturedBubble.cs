@@ -5,7 +5,7 @@ using UnityEngine;
 public class CapturedBubble : MonoBehaviour
 {
     [SerializeField] private AudioClip bubblePopSFX;
-    [SerializeField] private GameObject bananaPrefab;
+    [SerializeField] private GameObject[] fruitPrefabs;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -19,12 +19,12 @@ public class CapturedBubble : MonoBehaviour
             PlayerModel model = collision.GetComponent<PlayerModel>();
             if (model != null)
             {
-                model.Score += 500;
+                model.Score += 300;
             }
-            // Test
-            if (bananaPrefab != null)
+            if (fruitPrefabs != null && fruitPrefabs.Length > 0)
             {
-                Instantiate(bananaPrefab, transform.position, Quaternion.identity);
+                int index = Random.Range(0, fruitPrefabs.Length);
+                Instantiate(fruitPrefabs[index], transform.position, Quaternion.identity);
             }
             Destroy(gameObject);
         }
