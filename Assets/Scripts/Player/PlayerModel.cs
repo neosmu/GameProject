@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class PlayerModel : MonoBehaviour
 {
-    [SerializeField] ObservableProperty<int> hp = new();
+    [SerializeField] ObservableProperty<int> hp = new(3);
     public int HP { get => hp.Value; set => hp.Value = value; }
     public event UnityAction<int> OnHpChanged
     {
@@ -14,7 +14,7 @@ public class PlayerModel : MonoBehaviour
         remove => hp.Unsubscribe(value);
     }
 
-    [SerializeField] private ObservableProperty<int> maxHP = new();
+    [SerializeField] private ObservableProperty<int> maxHP = new(3);
     public int MaxHP { get => maxHP.Value; set => maxHP.Value = value; }
     public event UnityAction<int> OnMaxHPChanged
     {

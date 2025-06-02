@@ -273,3 +273,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubblePopSFX: {fileID: 8300000, guid: 6707dc9a298054c319311125667ea300, type: 3}
+  bananaPrefab: {fileID: 3693443023500852149, guid: c51936906e1e8644a954e43211238b30, type: 3}

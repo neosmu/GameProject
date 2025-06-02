@@ -20,7 +20,7 @@ public class ObservableProperty<T>
 
     public ObservableProperty(T value = default)
     {
-        value = value;
+        this.value = value;
     }
 
     public void Subscribe(UnityAction<T> action)
