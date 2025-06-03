@@ -23,7 +23,18 @@ public class PlayerModel : MonoBehaviour
     }
 
     [SerializeField] private ObservableProperty<int> score = new();
-    public int Score { get => score.Value; set => score.Value = value; }
+    public int Score
+    {
+        get => score.Value;
+        set
+        {
+            score.Value = value;
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.StageScore = value;
+            }
+        }
+    }
     public event UnityAction<int> OnScoreChanged
     {
         add => score.Subscribe(value);

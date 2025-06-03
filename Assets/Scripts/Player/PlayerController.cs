@@ -77,6 +77,10 @@ public class PlayerController : MonoBehaviour
         isJumped = false;
         isGrounded = false;
     }
+    public void OnDeathAnimationEnd()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))

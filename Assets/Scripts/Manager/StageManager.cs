@@ -53,6 +53,11 @@ public class StageManager : MonoBehaviour
         var controller = player.GetComponent<PlayerController>();
         if (controller != null)
             controller.enabled = false;
+        if (currentStage + 1 >= stageObjects.Length)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameClear");
+            yield break;
+        }
 
         Vector3 targetCamPos = virtualCamera.position + Vector3.down * moveDistance;
 
