@@ -36,6 +36,68 @@ public class Monster_Walk : MonsterState
     }
 }
 
+public class Monster_Fly : MonsterState
+{
+    private float timer = 0f;
+    private float switchTime = 3f;
+
+    public Monster_Fly(Monster monster) : base(monster)
+    {
+        HasPhysics = true;
+    }
+
+    public override void Enter()
+    {
+        timer = 0f;
+        monster.animator.Play(monster.FLY_HASH);
+    }
+
+    public override void FixedUpdate()
+    {
+        timer += Time.fixedDeltaTime;
+
+        Vector2 velocity = monster.patrolVec.normalized * monster.moveSpeed;
+        monster.rigid.velocity = velocity;
+
+        if (monster.patrolVec.x != 0)
+            monster.spriteRenderer.flipX = monster.patrolVec.x > 0;
+
+        if (timer >= switchTime)
+        {
+            monster.ChangeState(monster.stateMachine.stateDic[EState.Idleing]);
+        }
+    }
+    public class Monster_Idle : MonsterState
+    {
+        private float timer = 0f;
+        private float switchTime = 3f;
+
+        public Monster_Idle(Monster monster) : base(monster)
+        {
+            HasPhysics = false;
+        }
+
+        public override void Enter()
+        {
+            timer = 0f;
+            monster.rigid.velocity = Vector2.zero;
+            monster.animator.Play(monster.IDLEING_HASH);
+        }
+
+        public override void Update()
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= switchTime)
+            {
+                Vector2[] dirs = { Vector2.left, Vector2.right, Vector2.up, Vector2.down };
+                monster.patrolVec = dirs[Random.Range(0, dirs.Length)];
+
+                monster.ChangeState(monster.stateMachine.stateDic[EState.Fly]);
+            }
+        }
+    }
+}
 public class Monster_Captured : MonsterState
 {
     private GameObject bubbleObj; 
