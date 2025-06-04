@@ -8,9 +8,9 @@ public class StageManager : MonoBehaviour
     [SerializeField] private Transform virtualCamera;
     [SerializeField] private Transform[] playerSpawnPoints;
     [SerializeField] private GameObject[] stageObjects;
-    [SerializeField] private float moveDistance = 20f;
-    [SerializeField] private float moveSpeed = 3f;
-    [SerializeField] private float delayBeforeMove = 7f;
+    [SerializeField] private float moveDistance;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float delayBeforeMove;
 
     private bool moving = false;
     private int currentStage = 0;
